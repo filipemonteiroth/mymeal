@@ -1,4 +1,5 @@
 class MealsController < ApplicationController
+  before_action :verify_admin
   before_action :set_meal, only: [:show, :edit, :update, :destroy]
 
   # GET /meals
@@ -70,5 +71,9 @@ class MealsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def meal_params
       params.require(:meal).permit(:name, :description, :value, :image)
+    end
+
+    def verify_admin
+      redirect_to "/" unless is_admin?
     end
 end

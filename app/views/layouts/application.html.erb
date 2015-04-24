@@ -9,13 +9,23 @@
 <body>
 	<ul>
 		<li><a href="/">Início</a></li>
-		<li><a href="/meals">Cadastrar Refeição</a></li>
+		<% if is_admin? %>
+			<li><a href="/meals">Cadastrar Refeição</a></li>
+			<li><a href="/buys">Compras</a></li>
+		<% end %>
 		<li>
 			Total do Carrinho: <%= total_cart %> 
 			<form action="/cart/finish" method="POST">
 				<button type="submit">Finalizar</button>
 			</form>
 		</li>
+		<% if current_user.nil? %>
+			<li><a href="/users/sign_in">Entrar</a></li>
+			<li><a href="/users/sign_up">Cadastrar</a></li>
+		<% end %>
+		<% if !current_user.nil? %>
+			<li><a href="/users/sign_out">Sair</a></li>
+		<% end %>
 	</ul>
 	<%= yield %>
 
