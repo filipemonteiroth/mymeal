@@ -30,7 +30,7 @@ gem 'nokogiri', '1.6.3.1'
 gem 'byebug'
 
 group :production, :staging do
-  gem "pg"
+  gem "postgres"
 end
 
 # Use ActiveModel has_secure_password
